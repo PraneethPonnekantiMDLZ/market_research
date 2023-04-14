@@ -24,7 +24,7 @@ def main():
 
     # Perform Google search
     if st.button("Search"):
-        search_query = f"intext:{company_name} {search_term} {' '.join(keywords)} {timeframe} site:google.com"
+        search_query = f"intext:"{company_name}" {search_term} {' '.join(keywords)} {timeframe} site:google.com"
         search_query = search_query.replace(" ", "%20")
         st.write("Search Quer : ", search_query)
         url = f"https://www.google.com/search?q={search_query}"
@@ -38,6 +38,7 @@ def main():
             link = result.find("a")
             if link:
                 href = link.get("href")
+                st.write("href : ", href)
                 if href.startswith("/url?q="):
                     page_url = href[7:]
                     page_response = requests.get(page_url)
