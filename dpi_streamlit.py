@@ -19,13 +19,20 @@ def main():
     search_term = st.text_input("Enter Search Term")
     keywords = st.text_area("Enter Associated Keywords (comma separated)")
     keywords = [kw.strip() for kw in keywords.split(',') if kw.strip()]
-    now = datetime.datetime.now()
-    past_year = now - datetime.timedelta(days=365)
-    timeframe = f"daterange:{past_year.strftime('%Y-%m-%d')}:{now.strftime('%Y-%m-%d')}"
+    
+    # Get current year
+    current_year = datetime.datetime.now().year
+
+    # Get current date
+    current_date = datetime.datetime.now().date()
+
+    # Calculate past year
+    past_year = current_year - 1
 
     # Perform Google search
     if st.button("Search"):
-        search_query = f"intext:\"{company_name}\" {search_term} {' '.join(keywords)} {timeframe} site:google.com"
+        # Construct search query with time frame
+        search_query = f'intext:"{company_name}" "{search_term}" {" ".join(keywords)} site:google.com after:{past_year}-01-01 before:{current_date}'
         search_query = search_query.replace(" ", "%20")
         st.write("Search Query: ", search_query)
         url = f"https://www.google.com/search?q={search_query}"
@@ -37,22 +44,21 @@ def main():
         links = []
         for result in soup.find_all("div", class_="r"):
             link = result.find("a")
-            st.write("Link : ", link)
             if link:
                 href = link.get("href")
-                st.write("href: ", href)
+                st.write("href : ", href)
                 if href.startswith("/url?q="):
                     page_url = href[7:]
                     page_response = requests.get(page_url)
                     page_soup = BeautifulSoup(page_response.text, "html.parser")
-                    page_content = page_soup.get_text()
+                    page_content = page_soup.prettify()
                     if check_keywords_in_content(page_content, keywords):
-                        links.append(page_url)
+                        links.append(page_content)
 
-        # Display captured links
-        st.subheader("Captured Links:")
-        for link in links:
-            st.write(link)
+        # Display captured content
+        st.subheader("Captured Content:")
+        for content in links:
+            st.code(content, language='html')
 
 if __name__ == '__main__':
     main()
