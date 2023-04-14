@@ -25,7 +25,9 @@ def main():
     # Perform Google search
     if st.button("Search"):
         search_query = f"{company_name} {search_term} {' '.join(keywords)} {timeframe} site:google.com"
+        st.write ("Search Query : ", search_query)
         url = f"https://www.google.com/search?q={search_query}"
+        st.write ("URL Google : ", url)
         response = requests.get(url)
         soup = BeautifulSoup(response.text, "html.parser")
 
