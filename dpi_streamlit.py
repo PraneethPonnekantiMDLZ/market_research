@@ -32,7 +32,7 @@ def main():
     # Perform Google search
     if st.button("Search"):
         # Construct search query with time frame
-        search_query = f'intext:"{company_name}" "{search_term}" {" ".join(keywords)} site:google.com after:{past_year}-01-01 before:{current_date}'
+        search_query = f'intext:"{company_name}" {search_term} {" ".join(keywords)} site:google.com after:{past_year}-01-01 before:{current_date}'
         search_query = search_query.replace(" ", "%20")
         st.write("Search Query: ", search_query)
         url = f"https://www.google.com/search?q={search_query}"
