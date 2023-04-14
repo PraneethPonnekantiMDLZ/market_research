@@ -16,18 +16,19 @@ def main():
     # Input parameters
     company_name = st.text_input("Enter Company Name")
     search_term = st.text_input("Enter Search Term")
-    keywords = st.text_area("Enter Associated Keywords (comma seperated)")
+    keywords = st.text_area("Enter Associated Keywords (comma separated)")
     timeframe = st.text_input("Enter Timeframe (e.g., 2022-2023)")
 
     # Convert keywords to list
-    keywords = [kw.strip() for kw in keywords.split('\n') if kw.strip()]
+    keywords = [kw.strip() for kw in keywords.split(',') if kw.strip()]
 
     # Perform Google search
     if st.button("Search"):
-        search_query = f"{company_name} {search_term} {' '.join(keywords)} {timeframe} site:google.com"
-        st.write ("Search Query : ", search_query)
+        search_query = f"{company_name} {search_term} {', '.join(keywords)} {timeframe} site:google.com"
+        search_query = search_query.replace(" ", "%20")
+        st.write("Search Quer : ", search_query)
         url = f"https://www.google.com/search?q={search_query}"
-        st.write ("URL Google : ", url)
+        st.write("URL: ", url)
         response = requests.get(url)
         soup = BeautifulSoup(response.text, "html.parser")
 
