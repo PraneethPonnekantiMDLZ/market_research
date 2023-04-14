@@ -33,7 +33,7 @@ def main():
         soup = BeautifulSoup(response.text, "html.parser")
 
         # Capture relevant links
-         links = []
+        links = []
         for result in soup.find_all("div", class_="r"):
             link = result.find("a")
             if link:
