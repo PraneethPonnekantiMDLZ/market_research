@@ -33,7 +33,7 @@ def main():
         soup = BeautifulSoup(response.text, "html.parser")
 
         # Capture relevant links
-        links = []
+         links = []
         for result in soup.find_all("div", class_="r"):
             link = result.find("a")
             if link:
@@ -45,6 +45,7 @@ def main():
                     page_content = page_soup.get_text()
                     if check_keywords_in_content(page_content, keywords):
                         links.append(page_url)
+
 
         # Display captured links
         st.subheader("Captured Links:")
