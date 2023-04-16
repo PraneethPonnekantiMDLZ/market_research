@@ -4,3 +4,4 @@ streamlit
 Flask
 openai
 pip
+spacy
