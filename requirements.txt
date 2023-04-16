@@ -5,3 +5,4 @@ Flask
 sklearn
 sklearn.feature_extraction.text
 sklearn.cluster
+openai
