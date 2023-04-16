@@ -1,9 +1,6 @@
 bs4
 requests
-
+streamlit
 Flask
-sklearn
-sklearn.feature_extraction.text
-sklearn.cluster
 openai
 pip
