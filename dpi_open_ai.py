@@ -123,7 +123,7 @@ def main():
     if generate_button : 
         if statement and company_name and business_dimension and start_date and end_date:
             generated_kw = generate_keywords(statement, company_name, business_dimension, start_date, end_date)
-            google_search_url_generated = generate_google_search_url(statement, company_name, business_dimension, start_date, end_date, generated_keywords)
+            google_search_url_generated = generate_google_search_url(statement, company_name, business_dimension, start_date, end_date, generated_kw)
             st.markdown(f"**Google Search URL with Date Range Filter (Generated Keywords):**\n{google_search_url_generated}")
             st.markdown('<br>', unsafe_allow_html=True)
             
