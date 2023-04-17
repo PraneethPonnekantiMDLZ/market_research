@@ -55,7 +55,17 @@ def main():
         statement = st.text_area("Statement:", value="")
 
         # Input for business dimension
-        business_dimension = st.selectbox("Business Dimension:", options=["Product", "Service", "Marketing", "Sales", "Operations"])
+        business_dimension = st.selectbox("Business Dimension:", options=["Commercial Optimization,
+                                            "Consumer Experience",
+                                            "Consumer Insight",
+                                            "Customer Experience",
+                                            "Digital Back Office",
+                                            "Digital Commerce",
+                                            "Digital Marketing",
+                                            "Innovation & Smart R&D",
+                                            "Smart Supply Chain & Manufacturing",
+                                            "Workforce of the future"]
+                                         )
 
     # Output section with full screen width
     st.markdown('<div class="collapsible-content"></div>', unsafe_allow_html=True)
