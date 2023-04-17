@@ -42,7 +42,8 @@ def generate_google_search_url(statement, company_name, business_dimension, star
 # Streamlit app
 def main():
     
-    st.title("DPI using OpenAI") # Update with an appropriate title
+    #st.title("DPI using OpenAI") # Update with an appropriate title
+    st.set_page_config(page_title="DPI using OpenAI", page_icon=":rocket:", layout="wide") # Update with appropriate title and icon
     
         # Create collapsible input bar
     with st.beta_expander("Input", expanded=True):
@@ -67,17 +68,28 @@ def main():
         
         # Input for statement
         statement = st.text_area("Statement:", value="")
+        
+        # Set start date to Jan 1, 2022
+        start_date = datetime.date(2022, 1, 1)
 
+        # Set end date to today's date
+        end_date = datetime.date.today()
+        
+        # Button to generate output
+        generate_button = st.button("Generate Output")
+           
+        
     # Output section with full screen width
     st.markdown('<div class="collapsible-content"></div>', unsafe_allow_html=True)
     st.write("Output:")
     st.markdown('<div style="overflow-x:auto; margin-top: 20px;">', unsafe_allow_html=True)
     # Display Google search URL with date range filter
-    if statement and company_name and business_dimension and start_date and end_date:
-        google_search_url = generate_google_search_url(statement, company_name, business_dimension, start_date, end_date)
-        st.markdown(f"**Google Search URL with Date Range Filter:**\n{google_search_url}")
-        st.markdown('<br>', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+    if generate_button : 
+        if statement and company_name and business_dimension and start_date and end_date:
+            google_search_url = generate_google_search_url(statement, company_name, business_dimension, start_date, end_date)
+            st.markdown(f"**Google Search URL with Date Range Filter:**\n{google_search_url}")
+            st.markdown('<br>', unsafe_allow_html=True)
+     st.markdown('</div>', unsafe_allow_html=True)
 
 
 if __name__ == "__main__":
