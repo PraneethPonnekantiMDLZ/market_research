@@ -66,7 +66,7 @@ def main():
     st.set_page_config(page_title="DPI using OpenAI", page_icon=":rocket:", layout="wide") # Update with appropriate title and icon
     
     # Create collapsible input bar
-     with st.sidebar.beta_expander("DPI Inputs", expanded=True):
+    with st.sidebar.beta_expander("DPI Inputs", expanded=True):
         # Input for OpenAI API key
         api_key = st.text_input("OpenAI API Key:", type="password")
         
