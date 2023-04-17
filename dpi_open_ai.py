@@ -27,8 +27,21 @@ def generate_offerings_and_keywords(api_key, statement, company_name, business_d
     )
     return offerings.choices[0].text.strip(), keywords.choices[0].text.strip()
 
+def generate_keywords(statement, company_name, business_dimension, start_date, end_date):
+    # TODO: Replace with your own logic to generate keywords using OpenAI API
+    keywords = openai.Completion.create(
+        prompt=f"Generate keywords for {business_dimension} {statement} for {company_name}",
+        engine="text-davinci-002",
+        max_tokens=1024,
+        n=1,
+        stop=None,
+        temperature=0.5
+    )
+    keywords_list = keywords.choices[0].text.strip().split(",") # Convert string of keywords to a list
+    return keywords_list
+
 # Function to generate Google search URL with date range filter
-def generate_google_search_url(statement, company_name, business_dimension, start_date, end_date):
+def generate_google_search_url(statement, company_name, business_dimension, start_date, end_date, keywords):
     # Format the company name with double quotes
     company_name = f'"{company_name}"'
     # Get current year
@@ -40,8 +53,11 @@ def generate_google_search_url(statement, company_name, business_dimension, star
     # Calculate past year
     past_year = current_year - 1
     
+    # Convert keywords from string to list
+    keywords_list = keywords.split(",")
+    
     # Generate the Google search URL
-    url = f'https://www.google.com/search?q={company_name} {business_dimension} {" ".join(keywords)} after:{past_year}-01-01 before:{current_date}'
+    url = f'https://www.google.com/search?q={company_name} {business_dimension} {" ".join(keywords_list)} after:{past_year}-01-01 before:{current_date}'
     return url
 
 def main():
@@ -106,11 +122,13 @@ def main():
     # Display Google search URL with date range filter for generated keywords
     if generate_button : 
         if statement and company_name and business_dimension and start_date and end_date:
-            google_search_url_generated = generate_google_search_url(statement, company_name, business_dimension, start_date, end_date)
+            generated_kw = generate_keywords(statement, company_name, business_dimension, start_date, end_date)
+            google_search_url_generated = generate_google_search_url(statement, company_name, business_dimension, start_date, end_date, generated_keywords)
             st.markdown(f"**Google Search URL with Date Range Filter (Generated Keywords):**\n{google_search_url_generated}")
             st.markdown('<br>', unsafe_allow_html=True)
             
             if custom_keywords:
+                custom_keywords_list = [keyword.strip() for keyword in custom_keywords.split(",")]
                 google_search_url_custom = generate_google_search_url(statement, company_name, business_dimension, start_date, end_date, custom_keywords_list)
                 st.markdown(f"**Google Search URL with Date Range Filter (Custom Keywords):**\n{google_search_url_custom}")
                 st.markdown('<br>', unsafe_allow_html=True)
