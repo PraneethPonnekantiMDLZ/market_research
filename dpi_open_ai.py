@@ -97,8 +97,32 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus, input[ty
 def main():
     
     st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
-    st.title("DPI using OpenAI") # Update with an appropriate title
+    st.title("DPI using OpenAI", page_icon=":rocket:", layout="wide") # Update with an appropriate title
+    
+        # Create collapsible input bar
+    with st.beta_expander("Input", expanded=True):
+        # Input for OpenAI API key
+        api_key = st.text_input("OpenAI API Key:", type="password")
+        
+        # Input for company name
+        company_name = st.text_input("Company Name:", value="")
+        # Input for statement
+        statement = st.text_area("Statement:", value="")
 
+        # Input for business dimension
+        business_dimension = st.selectbox("Business Dimension:", options=["Product", "Service", "Marketing", "Sales", "Operations"])
+
+    # Output section with full screen width
+    st.markdown('<div class="collapsible-content"></div>', unsafe_allow_html=True)
+    st.write("Output:")
+    st.markdown('<div style="overflow-x:auto; margin-top: 20px;">', unsafe_allow_html=True)
+    # Display Google search URL with date range filter
+    if statement and company_name and business_dimension and start_date and end_date:
+        google_search_url = generate_google_search_url(statement, company_name, business_dimension, start_date, end_date)
+        st.markdown(f"**Google Search URL with Date Range Filter:**\n{google_search_url}")
+        st.markdown('<br>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+'''
     # Input for OpenAI API key
     api_key = st.text_input("OpenAI API Key:", type="password")
 
@@ -125,6 +149,6 @@ def main():
     data = {"Statement": [statement], "Company Name": [company_name], "Business Dimension": [business_dimension], "Offerings": [offerings], "Keywords": [keywords], "Google Search URL (Date Range)": [google_search_url]}
     df = pd.DataFrame(data)
     st.table(df)
-
+'''
 if __name__ == "__main__":
     main()
