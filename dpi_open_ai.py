@@ -39,7 +39,8 @@ def generate_google_search_url(statement, company_name, business_dimension, star
     url = f"https://www.google.com/search?q={business_dimension} {company_name} {statement}&{dates}"
     return url
 # Custom CSS styles for Streamlit app
-CUSTOM_CSS = """
+CUSTOM_CSS = 
+"""
         <style>
         /* Add your custom CSS styles here */
         body {
@@ -67,7 +68,6 @@ CUSTOM_CSS = """
             margin-top: 20px;
         }
         </style>
-        """
 """
 
 
