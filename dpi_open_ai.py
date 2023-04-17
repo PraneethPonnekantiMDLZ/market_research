@@ -89,7 +89,8 @@ def main():
             google_search_url = generate_google_search_url(statement, company_name, business_dimension, start_date, end_date)
             st.markdown(f"**Google Search URL with Date Range Filter:**\n{google_search_url}")
             st.markdown('<br>', unsafe_allow_html=True)
-     st.markdown('</div>', unsafe_allow_html=True)
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 
 
 if __name__ == "__main__":
