@@ -33,10 +33,11 @@ def generate_google_search_url(statement, company_name, business_dimension, star
     company_name = f'"{company_name}"'
     
     # Format the dates with after: and before: parameters
-    dates = f'after:{start_date.strftime("%Y-%m-%d")}%20before:{end_date.strftime("%Y-%m-%d")}'
+    #dates = f'after:{start_date.strftime("%Y-%m-%d")}%20before:{end_date.strftime("%Y-%m-%d")}'
+    dates = f'after:{past_year}-01-01 before:{current_date}'
     
     # Generate the Google search URL
-    url = f"https://www.google.com/search?q={business_dimension} {company_name} {statement}&{dates}"
+    url = f"https://www.google.com/search?q={company_name} {business_dimension} {statement}&{dates}"
     return url
 
 # Streamlit app
@@ -69,11 +70,15 @@ def main():
         # Input for statement
         statement = st.text_area("Statement:", value="")
         
-        # Set start date to Jan 1, 2022
-        start_date = datetime.date(2022, 1, 1)
+        # Get current year
+        current_year = datetime.datetime.now().year
 
-        # Set end date to today's date
-        end_date = datetime.date.today()
+        # Get current date
+        current_date = datetime.datetime.now().date()
+
+        # Calculate past year
+        past_year = current_year - 1
+        
         
         # Button to generate output
         generate_button = st.button("Generate Output")
