@@ -42,8 +42,8 @@ def generate_google_search_url(statement, company_name, business_dimension, star
 # Streamlit app
 def main():
     
-    st.title("DPI using OpenAI", page_icon=":rocket:", layout="wide") # Update with an appropriate title
-    '''
+    st.title("DPI using OpenAI") # Update with an appropriate title
+    
         # Create collapsible input bar
     with st.beta_expander("Input", expanded=True):
         # Input for OpenAI API key
@@ -94,6 +94,6 @@ def main():
     data = {"Statement": [statement], "Company Name": [company_name], "Business Dimension": [business_dimension], "Offerings": [offerings], "Keywords": [keywords], "Google Search URL (Date Range)": [google_search_url]}
     df = pd.DataFrame(data)
     st.table(df)
-
+    '''
 if __name__ == "__main__":
     main()
