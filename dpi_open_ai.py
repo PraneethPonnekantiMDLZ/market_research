@@ -55,7 +55,7 @@ def main():
         statement = st.text_area("Statement:", value="")
 
         # Input for business dimension
-        business_dimension = st.selectbox("Business Dimension:", options=["Commercial Optimization,
+        business_dimension = st.selectbox("Business Dimension:", options=["Commercial Optimization",
                                             "Consumer Experience",
                                             "Consumer Insight",
                                             "Customer Experience",
