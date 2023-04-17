@@ -93,9 +93,10 @@ def main():
     # Display generated keywords separately
     if generate_button:
         if statement and company_name and business_dimension and start_date and end_date:
-            generated_keywords = generate_keywords(statement, company_name, business_dimension, start_date, end_date)
-            st.markdown(f"**Generated Keywords:**\n{', '.join(generated_keywords)}")
-            st.markdown('<br>', unsafe_allow_html=True)
+                offerings, keywords = generate_offerings_and_keywords(api_key, statement, company_name, business_dimension)
+                st.markdown(f"**Generated Offerings:**\n{offerings}")
+                st.markdown(f"**Generated Keywords:**\n{keywords}")
+                st.markdown('<br>', unsafe_allow_html=True)
             
             if custom_keywords:
                 custom_keywords_list = [keyword.strip() for keyword in custom_keywords.split(",")]
