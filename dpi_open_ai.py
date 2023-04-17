@@ -73,7 +73,15 @@ def main():
         
         # Input for statement
         statement = st.text_area("Statement:", value="")
-        
+        # Get current year
+        current_year = datetime.datetime.now().year
+
+        # Get current date
+        current_date = datetime.datetime.now().date()
+
+        # Calculate past year
+        past_year = current_year - 1
+    
         
         # Button to generate output
         generate_button = st.button("Generate Output")
