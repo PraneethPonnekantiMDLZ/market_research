@@ -51,8 +51,6 @@ def main():
         
         # Input for company name
         company_name = st.text_input("Company Name:", value="")
-        # Input for statement
-        statement = st.text_area("Statement:", value="")
 
         # Input for business dimension
         business_dimension = st.selectbox("Business Dimension:", options=["Commercial Optimization",
@@ -66,6 +64,9 @@ def main():
                                             "Smart Supply Chain & Manufacturing",
                                             "Workforce of the future"]
                                          )
+        
+        # Input for statement
+        statement = st.text_area("Statement:", value="")
 
     # Output section with full screen width
     st.markdown('<div class="collapsible-content"></div>', unsafe_allow_html=True)
