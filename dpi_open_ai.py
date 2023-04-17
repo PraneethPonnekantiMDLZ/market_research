@@ -45,8 +45,8 @@ def generate_google_search_url(statement, company_name, business_dimension, star
     return url
 
 def main():
-    #st.title("DPI using OpenAI") # Update with an appropriate title
-    st.set_page_config(page_title="DPI using OpenAI", page_icon=":rocket:", layout="wide") # Update with appropriate title and icon
+    st.title("DPI using OpenAI") # Update with an appropriate title
+    #st.set_page_config(page_title="DPI using OpenAI", page_icon=":rocket:", layout="wide") # Update with appropriate title and icon
     
     # Create collapsible input bar
     with st.beta_expander("Input", expanded=True):
