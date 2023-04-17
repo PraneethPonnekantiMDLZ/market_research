@@ -38,9 +38,65 @@ def generate_google_search_url(statement, company_name, business_dimension, star
     # Generate the Google search URL
     url = f"https://www.google.com/search?q={business_dimension} {company_name} {statement}&{dates}"
     return url
+# Custom CSS styles for Streamlit app
+CUSTOM_CSS = """
+<style>
+/* Adjust the width of the main content area */
+.reportview-container .main .block-container {
+    max-width: 1000px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Add padding to table cells */
+table th, table td {
+    padding: 0.5rem;
+}
+
+/* Add a border to table cells */
+table th, table td {
+    border: 1px solid #ddd;
+}
+
+/* Add some spacing between table cells */
+table th, table td {
+    margin: 0.1rem;
+}
+
+/* Center align the table */
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Add some padding to the input fields */
+input[type="text"], input[type="password"], textarea, input[type="date"] {
+    padding: 0.5rem;
+}
+
+/* Remove outline from input fields on focus */
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus, input[type="date"]:focus {
+    outline: none;
+}
+
+/* Add some margin to the form inputs */
+.form-input {
+    margin-bottom: 1rem;
+}
+
+/* Add some margin to the submit button */
+.form-submit-button {
+    margin-top: 1rem;
+}
+
+</style>
+"""
+
 
 # Streamlit app
 def main():
+    
+    st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
     st.title("DPI using OpenAI") # Update with an appropriate title
 
     # Input for OpenAI API key
