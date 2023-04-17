@@ -34,7 +34,7 @@ def generate_google_search_url(statement, company_name, business_dimension, star
     
     
     # Generate the Google search URL
-    url = f"https://www.google.com/search?q={company_name} {business_dimension} {" ".join(keywords)} after:{past_year}-01-01 before:{current_date}}"
+    url = f'https://www.google.com/search?q={company_name} {business_dimension} {" ".join(keywords)} after:{past_year}-01-01 before:{current_date}'
     return url
 
 # Streamlit app
