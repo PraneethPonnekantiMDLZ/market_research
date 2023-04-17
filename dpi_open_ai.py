@@ -32,12 +32,9 @@ def generate_google_search_url(statement, company_name, business_dimension, star
     # Format the company name with double quotes
     company_name = f'"{company_name}"'
     
-    # Format the dates with after: and before: parameters
-    #dates = f'after:{start_date.strftime("%Y-%m-%d")}%20before:{end_date.strftime("%Y-%m-%d")}'
-    dates = f'after:{past_year}-01-01 before:{current_date}'
     
     # Generate the Google search URL
-    url = f"https://www.google.com/search?q={company_name} {business_dimension} {statement}&{dates}"
+    url = f"https://www.google.com/search?q={company_name} {business_dimension} {" ".join(keywords)} after:{past_year}-01-01 before:{current_date}"
     return url
 
 # Streamlit app
