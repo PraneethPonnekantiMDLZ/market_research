@@ -67,34 +67,7 @@ def main():
         st.markdown(f"**Google Search URL with Date Range Filter:**\n{google_search_url}")
         st.markdown('<br>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
-"""
-    # Input for OpenAI API key
-    api_key = st.text_input("OpenAI API Key:", type="password")
 
-    # Input for statement
-    statement = st.text_area("Statement:", value="")
-
-    # Input for company name
-    company_name = st.text_input("Company Name:", value="")
-
-    # Input for business dimension
-    business_dimension = st.text_input("Business Dimension:", value="")
-
-    # Input for start date and end date for search results filtering
-    start_date = st.date_input("Start Date:", value=(datetime.now() - timedelta(days=365)))
-    end_date = st.date_input("End Date:", value=datetime.now())
-
-    # Generate offerings and keywords
-    offerings, keywords = generate_offerings_and_keywords(api_key, statement, company_name, business_dimension)
-
-    # Generate Google search URL with date range filter
-    google_search_url = generate_google_search_url(statement, company_name, business_dimension, start_date, end_date)
-
-    # Display the generated data in a DataFrame
-    data = {"Statement": [statement], "Company Name": [company_name], "Business Dimension": [business_dimension], "Offerings": [offerings], "Keywords": [keywords], "Google Search URL (Date Range)": [google_search_url]}
-    df = pd.DataFrame(data)
-    st.table(df)
-"""
 
 if __name__ == "__main__":
     main()
