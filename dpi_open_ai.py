@@ -32,10 +32,10 @@ def generate_google_search_url(statement, company_name, business_dimension, star
     # Format the company name with double quotes
     company_name = f'"{company_name}"'
     # Get current year
-    current_year = datetime.datetime.now().year
+    current_year = datetime.now().year
 
     # Get current date
-    current_date = datetime.datetime.now().date()
+    current_date = datetime.now().date()
 
     # Calculate past year
     past_year = current_year - 1
@@ -44,13 +44,11 @@ def generate_google_search_url(statement, company_name, business_dimension, star
     url = f'https://www.google.com/search?q={company_name} {business_dimension} {" ".join(keywords)} after:{past_year}-01-01 before:{current_date}'
     return url
 
-# Streamlit app
 def main():
-    
     #st.title("DPI using OpenAI") # Update with an appropriate title
     st.set_page_config(page_title="DPI using OpenAI", page_icon=":rocket:", layout="wide") # Update with appropriate title and icon
     
-        # Create collapsible input bar
+    # Create collapsible input bar
     with st.beta_expander("Input", expanded=True):
         # Input for OpenAI API key
         api_key = st.text_input("OpenAI API Key:", type="password")
@@ -73,24 +71,30 @@ def main():
         
         # Input for statement
         statement = st.text_area("Statement:", value="")
-        # Get current year
-        current_year = datetime.datetime.now().year
+        
+        # Input for custom keywords
+        custom_keywords = st.text_input("Custom Keywords (comma-separated):", value="")
+        
+        # Input for start date
+        start_date = st.date_input("Start Date:", value=(datetime.now() - timedelta(days=365)).date())
 
-        # Get current date
-        current_date = datetime.datetime.now().date()
-
-        # Calculate past year
-        past_year = current_year - 1
-    
+        # Input for end date
+        end_date = st.date_input("End Date:", value=datetime.now().date())
         
         # Button to generate output
         generate_button = st.button("Generate Output")
            
-        
     # Output section with full screen width
     st.markdown('<div class="collapsible-content"></div>', unsafe_allow_html=True)
     st.write("Output:")
     st.markdown('<div style="overflow-x:auto; margin-top: 20px;">', unsafe_allow_html=True)
+    # Display generated keywords separately
+    if generate_button:
+        if statement and company_name and business_dimension and start_date and end_date:
+            keywords = generate_keywords(statement, company_name, business_dimension, start_date, end_date, custom_keywords)
+            st.markdown(f"**Generated Keywords:**\n{', '.join(keywords)}")
+            st.markdown('<br>', unsafe_allow_html=True)
+    
     # Display Google search URL with date range filter
     if generate_button : 
         if statement and company_name and business_dimension and start_date and end_date:
@@ -98,8 +102,15 @@ def main():
             st.markdown(f"**Google Search URL with Date Range Filter:**\n{google_search_url}")
             st.markdown('<br>', unsafe_allow_html=True)
     
+    # Display table with search results
+    if generate_button : 
+        if statement and company_name and business_dimension and start_date and end_date:
+            results = get_search_results(google_search_url)
+            st.write(results)
+    
     st.markdown('</div>', unsafe_allow_html=True)
 
 
 if __name__ == "__main__":
     main()
+
