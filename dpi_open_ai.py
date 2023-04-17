@@ -38,42 +38,10 @@ def generate_google_search_url(statement, company_name, business_dimension, star
     # Generate the Google search URL
     url = f"https://www.google.com/search?q={business_dimension} {company_name} {statement}&{dates}"
     return url
-# Custom CSS styles for Streamlit app
-CUSTOM_CSS = """
-        <style>
-        /* Add your custom CSS styles here */
-        body {
-            background-color: #f8f8f8;
-        }
-        .stButton button {
-            background-color: #2b6eff;
-            color: white;
-        }
-        .stButton:hover {
-            background-color: #1c4fff;
-        }
-        .stTextInput input {
-            background-color: #ffffff;
-        }
-        .stSelectbox select {
-            background-color: #ffffff;
-        }
-        .stDateInput input {
-            background-color: #ffffff;
-        }
-        .collapsible-content {
-            margin-left: 40px;
-            margin-right: 40px;
-            margin-top: 20px;
-        }
-        </style>
-"""
-
 
 # Streamlit app
 def main():
     
-    st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
     st.title("DPI using OpenAI", page_icon=":rocket:", layout="wide") # Update with an appropriate title
     
         # Create collapsible input bar
