@@ -43,7 +43,7 @@ def generate_google_search_url(statement, company_name, business_dimension, star
 def main():
     
     st.title("DPI using OpenAI", page_icon=":rocket:", layout="wide") # Update with an appropriate title
-    
+    '''
         # Create collapsible input bar
     with st.beta_expander("Input", expanded=True):
         # Input for OpenAI API key
@@ -67,7 +67,7 @@ def main():
         st.markdown(f"**Google Search URL with Date Range Filter:**\n{google_search_url}")
         st.markdown('<br>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
-'''
+    '''
     # Input for OpenAI API key
     api_key = st.text_input("OpenAI API Key:", type="password")
 
@@ -94,6 +94,6 @@ def main():
     data = {"Statement": [statement], "Company Name": [company_name], "Business Dimension": [business_dimension], "Offerings": [offerings], "Keywords": [keywords], "Google Search URL (Date Range)": [google_search_url]}
     df = pd.DataFrame(data)
     st.table(df)
-'''
+
 if __name__ == "__main__":
     main()
