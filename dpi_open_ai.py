@@ -31,7 +31,14 @@ def generate_offerings_and_keywords(api_key, statement, company_name, business_d
 def generate_google_search_url(statement, company_name, business_dimension, start_date, end_date):
     # Format the company name with double quotes
     company_name = f'"{company_name}"'
-    
+    # Get current year
+    current_year = datetime.datetime.now().year
+
+    # Get current date
+    current_date = datetime.datetime.now().date()
+
+    # Calculate past year
+    past_year = current_year - 1
     
     # Generate the Google search URL
     url = f'https://www.google.com/search?q={company_name} {business_dimension} {" ".join(keywords)} after:{past_year}-01-01 before:{current_date}'
@@ -66,15 +73,6 @@ def main():
         
         # Input for statement
         statement = st.text_area("Statement:", value="")
-        
-        # Get current year
-        current_year = datetime.datetime.now().year
-
-        # Get current date
-        current_date = datetime.datetime.now().date()
-
-        # Calculate past year
-        past_year = current_year - 1
         
         
         # Button to generate output
