@@ -98,10 +98,10 @@ def main():
                 st.markdown(f"**Generated Keywords:**\n{keywords}")
                 st.markdown('<br>', unsafe_allow_html=True)
             
-            if custom_keywords:
-                custom_keywords_list = [keyword.strip() for keyword in custom_keywords.split(",")]
-                st.markdown(f"**Custom Keywords:**\n{', '.join(custom_keywords_list)}")
-                st.markdown('<br>', unsafe_allow_html=True)
+                if custom_keywords:
+                    custom_keywords_list = [keyword.strip() for keyword in custom_keywords.split(",")]
+                    st.markdown(f"**Custom Keywords:**\n{', '.join(custom_keywords_list)}")
+                    st.markdown('<br>', unsafe_allow_html=True)
     
     # Display Google search URL with date range filter for generated keywords
     if generate_button : 
