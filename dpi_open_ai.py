@@ -37,8 +37,8 @@ def generate_keywords(statement, company_name, business_dimension, start_date, e
         stop=None,
         temperature=0.5
     )
-   # keywords_list = keywords.choices[0].text.strip().split(",") # Convert string of keywords to a list
-    return keywords
+    keywords_list = keywords.choices[0].text.strip().split(",") # Convert string of keywords to a list
+    return keywords_list
 
 # Function to generate Google search URL with date range filter
 def generate_google_search_url(statement, company_name, business_dimension, start_date, end_date, keywords):
@@ -54,7 +54,12 @@ def generate_google_search_url(statement, company_name, business_dimension, star
     past_year = current_year - 1
     
     # Convert keywords from string to list
-    keywords_list = keywords.split(",")
+    if keywords is not None and isinstance(keywords, str):
+        keywords_list = keywords.split(",")
+    else:
+        keywords_list = []
+    
+    #keywords_list = keywords.split(",")
     
     # Generate the Google search URL
     url = f'https://www.google.com/search?q={company_name} {business_dimension} {" ".join(keywords_list)} after:{past_year}-01-01 before:{current_date}'
