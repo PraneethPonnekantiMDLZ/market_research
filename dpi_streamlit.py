@@ -41,7 +41,8 @@ def main():
         url = f"https://www.google.com/search?q={search_query}"
         #st.write("URL: ", url)
         st.markdown("### Generated Google Search URL:")
-        with st.beta_container():
+        #with st.beta_container():
+        with st.info("Click to view search results"):
             st.markdown(f"[{url}]({url})")
         response = requests.get(url)
         soup = BeautifulSoup(response.text, "html.parser")
