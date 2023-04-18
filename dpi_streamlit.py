@@ -37,9 +37,12 @@ def main():
         if website_name:
             search_query += f" site:{website_name}"
         search_query = search_query.replace(" ", "%20")
-        st.write("Search Query: ", search_query)
+        #st.write("Search Query: ", search_query)
         url = f"https://www.google.com/search?q={search_query}"
-        st.write("URL: ", url)
+        #st.write("URL: ", url)
+        st.markdown("### Generated Google Search URL:")
+        with st.beta_container():
+            st.markdown(f"[{url}]({url})")
         response = requests.get(url)
         soup = BeautifulSoup(response.text, "html.parser")
 
