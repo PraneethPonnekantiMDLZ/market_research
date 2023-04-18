@@ -19,6 +19,7 @@ def main():
     search_term = st.text_input("Enter Search Term")
     keywords = st.text_area("Enter Associated Keywords (comma separated)")
     keywords = [kw.strip() for kw in keywords.split(',') if kw.strip()]
+    website_name = st.text_input("Search in a specific website Name (Optional)")
     
     # Get current year
     current_year = datetime.datetime.now().year
@@ -33,6 +34,8 @@ def main():
     if st.button("Search"):
         # Construct search query with time frame
         search_query = f'intext:"{company_name}" {search_term} {" ".join(keywords)} after:{past_year}-01-01 before:{current_date}'
+        if website_name:
+            search_query += f" site:{website_name}"
         search_query = search_query.replace(" ", "%20")
         st.write("Search Query: ", search_query)
         url = f"https://www.google.com/search?q={search_query}"
