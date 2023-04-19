@@ -90,5 +90,6 @@ else:
         st.write(pages[page_num-1])
         
  
-
+if __name__ == '__main__':
+    main()
                 
