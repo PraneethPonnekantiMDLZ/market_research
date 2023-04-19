@@ -7,4 +7,3 @@ pip
 spacy
 datetime
 
-io
