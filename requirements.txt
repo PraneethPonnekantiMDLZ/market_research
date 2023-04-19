@@ -6,5 +6,5 @@ openai
 pip
 spacy
 datetime
---PyPDF2
+
 io
